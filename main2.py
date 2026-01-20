@@ -45,18 +45,23 @@ target_point = decompress(target_hex)
 
 # maximumi
 maximum_hex = 0x8000000000000000000000000000000000
-m_p = maximum_hex * G
+maximum_point = maximum_hex * G
 
-m_m = m_p + neg(target_point)
+# maxsimums vakleb loop it saTiTaod 0x1000...
+# shemdeg targets vakleb 0x1000...
+# magalitad
+'''
+7123
 
-test = 0x7000000000000000000000000000000000 * G
-t_m = target_point + neg(test)
+7123 - 1000 = 6123
+6023 - 1000 = 5123
+5023 - 1000 = 4123
+4023 - 1000 = 3123
+3023 - 1000 = 2123
+2023 - 1000 = 1123
 
-p_p = m_m + t_m
+mere target-hex - 1000 # 7123 - 1000 = 6123
+shemdeg 7123 - 6123 == 1000 eseigi raRac logikaas
 
-result_point = 0x10000000000000000000000000000000 * G
-if compress(result_point) == compress(p_p):
-    print("Success! The points match 1.")
-#####################################################
 
-m_p = result_point
+'''

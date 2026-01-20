@@ -49,12 +49,12 @@ maximum_point = maximum_hex * G
 
 # 2**135 unda gamovaklo target_hex
 maximumsMinusTargetPoint = maximum_point + neg(target_point)
-# print("maximumsMinusTargetPoint:", compress(maximumsMinusTargetPoint))
+print("maximumsMinusTargetPoint:", compress(maximumsMinusTargetPoint))
 
 # target_hex unda gamovaklo 0x7000..
 minusSHVIDI_point = 0x7000000000000000000000000000000000 * G
 minusSHVIDS_minus_shvidi = target_point + neg(minusSHVIDI_point)
-# print("minusSHVIDS_minus_shvidi:", compress(minusSHVIDS_minus_shvidi))
+print("minusSHVIDS_minus_shvidi:", compress(minusSHVIDS_minus_shvidi))
 
 # amat vamatyeb ertmanetze
 plius_plius = maximumsMinusTargetPoint + minusSHVIDS_minus_shvidi
