@@ -157,7 +157,7 @@ if __name__ == "__main__":
     # ====================== STEP 2: WHERE I NEED FIND SECOND CHAR FOR ORIGINAL POINT ======================
     # Example: now [xxx] + 100 = ?xx
     # 100... + [xxx] = 1xxx 028f68b9d2f63b5f339239c1ad981f162ee88c5678723ea3351b7b444c9ec4c0da
-    current_point = "03170ce536294fab6c0e8eee99b8cf215b672aa691b303707b11befed7e145f4ca"   # 7 ჩამოშორებულით [xxx]
+    current_point = "02145d2611c823a396ef6712ce0f712f09b9b4f3135e3e0aa3230fb9b6d08d1e16"   # 7 ჩამოშორებულით [xxx]
     test_plius = "02e4f3fb0176af85d65ff99ff9198c36091f48e86503681e3e6686fd5053231e11" # unda gavagrdzelo e0000 idan
 
 
