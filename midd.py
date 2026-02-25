@@ -2,7 +2,21 @@ import os
 import random
 import time
 import multiprocessing as mp
-from example import *  
+from example import *
+
+import asyncio
+from telegram import Bot
+
+BOT_TOKEN = ''
+CHAT_ID = 123  # Your chat ID (integer)
+
+async def send_message(bot_token, chat_id, message):
+    bot = Bot(token=bot_token)
+    await bot.send_message(chat_id=chat_id, text=message)
+    print("Message sent successfully!")
+
+asyncio.run(send_message(BOT_TOKEN, CHAT_ID, message="Starting the search for k..."))
+
 
 def load_precomputed(filename):
     """Load precomputed points from file.
@@ -41,6 +55,7 @@ def worker(target_pub_hex, low, high, precomputed_table, stop_event, result_queu
 
         attempts += 1
         r = rng.randint(low, high)
+        # print(r)
         R_pub = pubkey_from_scalar(r)                # compute r*G
         diff_pub = subtract_pubkeys(target_pub_hex, R_pub)   # Q - r*G
 
@@ -56,10 +71,10 @@ def worker(target_pub_hex, low, high, precomputed_table, stop_event, result_queu
                 break
 
         # Optional progress report (every million attempts)
-        if attempts % 1_000_000 == 0:
-            elapsed = time.time() - start_time
-            rate = attempts / elapsed
-            print(f"Worker {worker_id}: {attempts} attempts, {rate:.0f} tries/sec")
+        # if attempts % 1_000_000 == 0:
+        #     elapsed = time.time() - start_time
+        #     rate = attempts / elapsed
+        #     print(f"Worker {worker_id}: {attempts} attempts, {rate:.0f} tries/sec")
 
 def parallel_find_match(target_pub_hex, precomputed_table, low, high,
                         num_workers=4, total_max_attempts=None):
@@ -127,6 +142,8 @@ if __name__ == "__main__":
 
     if result:
         k, r, exp = result
-        print(f"\nSUCCESS: k = {k} (r = {r}, exponent = {exp}, 16^{exp} = {16**exp})")
+        message = (f"\nSUCCESS: k = {k} (r = {r}, exponent = {exp}, 16^{exp} = {16**exp})")
+        print(message)
+        asyncio.run(send_message(BOT_TOKEN, CHAT_ID, message))
     else:
         print("\nNo match found within attempt limit.")
