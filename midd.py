@@ -46,7 +46,7 @@ def worker(target_pub_hex, low, high, precomputed_table, stop_event, result_queu
 
         if diff_pub in precomputed_table:
             exp = precomputed_table[diff_pub]
-            k_candidate = r + (16 ** exp)            # because we stored 16^i
+            k_candidate = r + (1 ** exp)            # because we stored 1^i
             # Verify quickly (optional, but safe)
             if pubkey_from_scalar(k_candidate) == target_pub_hex:
                 elapsed = time.time() - start_time

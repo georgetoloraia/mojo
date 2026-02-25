@@ -5,7 +5,7 @@ import sys
 # ---------- Your existing EC functions (assumed defined) ----------
 # P_FIELD, N_ORDER, G, scalar_mult, pubkey_from_scalar, etc.
 
-def generate_precomputed_hex(filename="precomputed_hex.txt", max_exponent=40):
+def generate_precomputed_hex(filename="precomputed_hex.txt", max_exponent=135):
     """
     Generate a file with precomputed points 16^i * G for i = 0..max_exponent.
     Each line: i <compressed_pubkey>
@@ -20,7 +20,7 @@ def generate_precomputed_hex(filename="precomputed_hex.txt", max_exponent=40):
 
     with open(filename, 'w') as f:
         for i in range(max_exponent + 1):
-            scalar = 16 ** i
+            scalar = 2 ** i
             print(scalar)
             # Optional: ensure scalar < N_ORDER (curve order)
             # if scalar >= N_ORDER:
@@ -36,4 +36,4 @@ def generate_precomputed_hex(filename="precomputed_hex.txt", max_exponent=40):
 
 # Example: generate up to 16^40 (i=40)
 if __name__ == "__main__":
-    generate_precomputed_hex("precomputed_hex.txt", max_exponent=34)
+    generate_precomputed_hex("precomputed_hex.txt", max_exponent=135)
