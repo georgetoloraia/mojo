@@ -8,7 +8,7 @@ import asyncio
 from telegram import Bot
 
 BOT_TOKEN = ''
-CHAT_ID = 123  # Your chat ID (integer)
+CHAT_ID = 5  # Your chat ID (integer)
 
 async def send_message(bot_token, chat_id, message):
     bot = Bot(token=bot_token)
@@ -60,6 +60,8 @@ def worker(target_pub_hex, low, high, precomputed_table, stop_event, result_queu
         diff_pub = subtract_pubkeys(target_pub_hex, R_pub)   # Q - r*G
 
         if diff_pub in precomputed_table:
+            axlosaa = (f"Worker {worker_id}: Found a match after {attempts} attempts! r = {r}")
+            asyncio.run(send_message(BOT_TOKEN, CHAT_ID, axlosaa))
             exp = precomputed_table[diff_pub]
             k_candidate = r + (1 ** exp)            # because we stored 1^i
             # Verify quickly (optional, but safe)
@@ -127,10 +129,10 @@ if __name__ == "__main__":
     table = load_precomputed("precomputed_hex.txt")
     print(f"Loaded {len(table)} precomputed points.")
 
-    target = "02145d2611c823a396ef6712ce0f712f09b9b4f3135e3e0aa3230fb9b6d08d1e16"  # replace with actual
-
-    LOW = 2**134
-    HIGH = 2**135 - 1
+    target = "02145d2611c823a396ef6712ce0f712f09b9b4f3135e3e0aa3230fb9b6d08d1e16"
+    # target = "02e4d9aab1c5e3a1c2ca6af7f51d06b4ed412ea495aecd00d72869009b923a6734"
+    HIGH = 43556142965880123323311949751266331066368
+    LOW = 21778071482940061661655974875633165533184
 
     # Use all available CPU cores
     num_cores = mp.cpu_count()
